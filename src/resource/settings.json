@@ -1,6 +1,6 @@
 {
   "branch": "master",
-  "sql_regex": "\"(select|call|update|delete|insert|nvl){1}.*\";",
+  "sql_regex": "\"(\bselect\b|\bcall\b|\bupdate\b|\bdelete\b|\binsert\b|\bsubstr|to_date|to_number|\bwhere\b|\bnvl){1}.*\";",
   "java_mask": "\\.java$",
   "xml_mask": "\\.(lc|check|action)$"
 }

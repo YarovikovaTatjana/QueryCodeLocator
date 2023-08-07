@@ -35,7 +35,7 @@ class FileProducer(threading.Thread):
         self.pipeline = pipeline
         self.commit = commit
         self.folderQueue = folderQueue
-        self.pattern = re.compile(regex)
+        self.pattern = re.compile(regex, re.IGNORECASE | re.VERBOSE)
 
     """
     Bypasses the folder and adds java files to the general queue, and folders to the local queue
@@ -79,7 +79,7 @@ class SQLJavaProcessorConsumer(threading.Thread):
         self.project = project
         self.pipeline = pipeline
         self.out = out
-        self.pattern = re.compile(regex)
+        self.pattern = re.compile(regex, re.IGNORECASE | re.VERBOSE)
         self.attempts = attempts
 
     """ 

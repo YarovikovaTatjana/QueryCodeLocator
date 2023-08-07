@@ -7,7 +7,7 @@ from src.locator.utils import EndOfMessage
 from src.locator.writer import FileWriter
 
 BRANCH = "master"  # default GitLab project branch
-SQL_REGEX = r"\"(select|call|update|delete|insert|nvl){1} (\s|\S|\n)*\";"
+SQL_REGEX = r"\"(\bselect\b|\bcall\b|\bupdate\b|\bdelete\b|\binsert\b|to_number|to_date|\bsubstr|\bnvl){1} (\s|\S|\n)*\";"
 
 """
 Script Entry Point
@@ -33,14 +33,15 @@ if __name__ == '__main__':
     # java processing
     javaPipeline = queue.Queue()
     javaFolders = queue.Queue()
-    javaFolders.put('Modules/asfk-autoproc')
-    javaFolders.put('Modules/asfk-convertation')
-    javaFolders.put('Modules/asfk-doc')
-    javaFolders.put('Modules/asfk-lib')
-    javaFolders.put('Modules/asfk-print')
-    javaFolders.put('Modules/asfk-ws')
-    javaFolders.put('Modules/sed-integration')
-    javaFolders.put('Modules/ws-client')
+    javaFolders.put('Modules/asfk-autoproc/src/main/java')
+    javaFolders.put('Modules/asfk-convertation/src/main/java')
+    javaFolders.put('Modules/asfk-doc/src/main/java')
+    javaFolders.put('Modules/asfk-lib/src/main/java')
+    javaFolders.put('Modules/asfk-print/src/main/java')
+    javaFolders.put('Modules/asfk-ws/src/main/java')
+    javaFolders.put('Modules/sed-integration/src/main/java')
+    javaFolders.put('Modules/ws-client/src/main/java')
+    javaFolders.put('Modules/component-arpscroller')
     for i in range(1, 3):
         fileProducer = FileProducer(project=project, commit=commit, pipeline=javaPipeline, folderQueue=javaFolders,
                                     regex=r"\.java$")
